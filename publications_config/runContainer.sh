@@ -61,7 +61,11 @@ repo_base="/home/jetscape-user/$repo_name"
 build_dir="$repo_base/build"
 entry_point="$build_dir/runJetscape"
 host_mount_dir="$repo_base/host"
-build_host="$repo_base/tmp"
+
+# unique temporary directory on the host
+host_tmp_dir=$(mktemp -d -p "$(pwd)" build_tmp_XXXXXX)
+host_tmp_dir_file=$(basename "$host_tmp_dir")
+build_host="$repo_base/$host_tmp_dir_file"
 
 # script to run inside the container
 container_script=$(cat <<EOF
@@ -72,17 +76,15 @@ cp *.dat "$host_mount_dir"
 EOF
 )
 
-# temporary directory on the host, accessible to the container
-mkdir -p "$(pwd)/tmp"
-
 # run the Docker container if Docker is available
-if command -v docker &> /dev/null; then
+# if command -v docker &> /dev/null; then
+if false; then
     echo "Running Docker command..."
     docker run --rm \
       -w "$repo_base" \
       -u "$(id -u):$(id -g)" \
       -v "$(pwd):$host_mount_dir" \
-      -v "$(pwd)/tmp:$build_host" \
+      -v "$host_tmp_dir:$build_host" \
       --entrypoint /bin/bash \
       "jetscape/$image_repo_tag" \
       -c "$container_script"
@@ -92,7 +94,7 @@ elif command -v apptainer &> /dev/null; then
     echo "Running Apptainer command..."
     apptainer exec \
       --pwd "$repo_base" \
-      --bind "$(pwd):$host_mount_dir,$(pwd)/tmp:$build_host" \
+      --bind "$(pwd):$host_mount_dir,$host_tmp_dir:$build_host" \
       docker://jetscape/$image_repo_tag \
       bash -c "$container_script"
 
@@ -101,7 +103,7 @@ elif command -v singularity &> /dev/null; then
     echo "Running Singularity command..."
     singularity exec \
       --pwd "$repo_base" \
-      --bind "$(pwd):$host_mount_dir,$(pwd)/tmp:$build_host" \
+      --bind "$(pwd):$host_mount_dir,$host_tmp_dir:$build_host" \
       docker://jetscape/$image_repo_tag \
       bash -c "$container_script"
 
@@ -113,4 +115,4 @@ fi
 
 # .dat files are copied to the host current directory
 # if other generated files are wanted, comment out the rm command
-rm -rf "$(pwd)/tmp"
+rm -rf "$host_tmp_dir"

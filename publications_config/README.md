@@ -29,22 +29,23 @@ The JETSCAPE Collaboration maintains Docker images with fully installed versions
 
 Use the DockerHub repository and tag corresponding to the version you want to run. For example, to run the PP tune with JETSCAPE 3.7.1, follow these steps:
 
+1) From a Linux bash shell, navigate to repository's `publications_config` directory:
 
-1) Update the `<outputFilename>test_out</outputFilename>` line in the XML file to include the path to the host system.
-
-```xml
-<!-- Use this path if running JETSCAPE -->
-<outputFilename>/home/jetscape-user/JETSCAPE/host/test_out</outputFilename>
-<!-- Use this path if running X-SCAPE -->
-<outputFilename>/home/jetscape-user/X-SCAPE/host/test_out</outputFilename>
+```bash
+cd publications_config
 ```
 
-2) From a Linux bash shell, run the `runContainer.sh` script to execute the simulation. Pass the path to the XML tune and the image `<repository>:<tag>` for the version of JETSCAPE or X-SCAPE you want to run. The image will be downloaded if it isn't available locally.
+2) Run the `runContainer.sh` script to execute the simulation. Pass the path to the XML tune and the image `<repository>:<tag>` for the version of JETSCAPE or X-SCAPE you want to run. The image will be downloaded if it isn't available locally.
+
 ```bash
 ./runContainer.sh arXiv_1910.05481/jetscape_user_PP_1910.05481.xml jetscape_full:v3.7.1
 ```
 
-Note that it is required to have either Docker or Apptainer/Singularity installed on your system but it is not required to have JETSCAPE or X-SCAPE installed, as these images contain the full installation.
+* Note that it is required to have either Docker or Apptainer/Singularity installed on your system but it is not required to have JETSCAPE or X-SCAPE installed, as these images contain the full installation.
+
+* Output .dat files will be written to the host system current working directory.
+
+* The simulation will write a `tmp/` directory to the host system current working directory, which will be removed after the simulation completes.
 
 ## Running tunes in Apptainer with specific versions of JETSCAPE or X-SCAPE
 
