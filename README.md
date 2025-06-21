@@ -29,7 +29,7 @@ The JETSCAPE Collaboration maintains Docker images with fully installed versions
 
 Use the DockerHub repository and tag corresponding to the version you want to run. For example, to run the PP tune with JETSCAPE 3.7.1, follow these steps:
 
-1) From a Linux bash shell, navigate to repository's `publications_config` directory:
+1) From a Linux bash shell, navigate to the repository's `publications_config` directory:
 
 ```bash
 cd publications_config
@@ -45,7 +45,7 @@ cd publications_config
 
 * Output .dat files will be written to the host system current working directory.
 
-* The simulation will write a `tmp/` directory to the host system current working directory, which will be removed after the simulation completes.
+* The simulation will write a temporary directory to the host system current working directory, which will be removed after the simulation completes.
 
 ## Running tunes in Apptainer with specific versions of JETSCAPE or X-SCAPE
 
