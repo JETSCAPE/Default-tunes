@@ -77,8 +77,7 @@ EOF
 )
 
 # run the Docker container if Docker is available
-# if command -v docker &> /dev/null; then
-if false; then
+if command -v docker &> /dev/null; then
     echo "Running Docker command..."
     docker run --rm \
       -w "$repo_base" \
