@@ -19,7 +19,7 @@ The different tunes can be run by:
 When a new JETSCAPE paper is published, please add the XML file(s) to `publications_config/arXiv_#` and name the corresponding XML files similar to this one from the PP tune: `jetscape_user_PP_1910.05481.xml`.
 Specify the system (PP, AA, PA, ...) and put the arXiv number in the name.
 
-If there is more information needed to reproduce the results an additional `README.md` file can be placed in the directory for the publication. Mention the version of JETSCAPE or X-SCAPE was used for the simulation.
+If there is more information needed to reproduce the results an additional `README.md` file can be placed in the directory for the publication. Mention the version of JETSCAPE or X-SCAPE used for the tune.
 
 When XML files are added to the repository, an entry should be added in this file.
 
