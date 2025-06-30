@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+
+<jetscape>
+
+  <enableAutomaticTaskListDetermination> false </enableAutomaticTaskListDetermination>
+
+  <vlevel> 0 </vlevel>
+  <debug> off </debug>
+  <remark> off </remark>
+
+  <nEvents> 400 </nEvents>
+  <nEvents_printout> 1 </nEvents_printout>
+
+  <Random>
+    <seed> 1 </seed>
+  </Random>
+
+  <JetScapeWriterAscii> on </JetScapeWriterAscii>
+  <outputFilename>SingleTest</outputFilename>
+
+  <!-- Hard Process -->
+  <Hard>
+    <PythiaGun>
+      <pTHatMin>7.4</pTHatMin>
+      <pTHatMax>-1</pTHatMax>
+      <eCM>5020.0</eCM>
+      <LinesToRead>
+        PhaseSpace:bias2Selection = on
+        PhaseSpace:bias2SelectionPow = 4
+        PhaseSpace:bias2SelectionRef = 10
+        SigmaProcess:alphaSvalue = 0.19
+        MultipartonInteractions:alphaSvalue = 0.19
+        MultipartonInteractions:pTmin = 7.12
+      </LinesToRead>
+      <useHybridHad>1</useHybridHad>
+    </PythiaGun>
+  </Hard>
+
+  <!-- Initial condition  Module  -->
+  <IS>
+    <MCGlauber>
+        <ylossParam4At2> 1.1 </ylossParam4At2>
+        <ylossParam4At4> 2.5 </ylossParam4At4>
+        <ylossParam4At6> 1.7 </ylossParam4At6>
+        <ylossParam4At10> 3.5 </ylossParam4At10>
+        <ylossParam4var> 0.34 </ylossParam4var>
+    </MCGlauber>
+  </IS>
+
+  <!-- Hydro  Module  -->
+  <Hydro>
+      <Brick bjorken_expansion_on="false" start_time="0.6">
+        <name>Brick</name>
+        <T>0.2</T>
+      </Brick>
+  </Hydro>
+
+  <!--Eloss Modules -->
+  <Eloss>
+    <maxT>50</maxT>
+    <Matter>
+      <Q0> 1.0 </Q0>
+      <in_vac> 1 </in_vac>
+      <useHybridHad>1</useHybridHad>
+      <vir_factor> 0.25 </vir_factor>
+      <recoil_on> 0 </recoil_on>
+      <broadening_on> 0 </broadening_on>
+      <brick_med> 0 </brick_med>
+    </Matter>
+  </Eloss>
+
+  <!-- Jet Hadronization Module -->
+  <JetHadronization>
+    <name>colorless</name>
+  </JetHadronization>
+
+</jetscape>
