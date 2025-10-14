@@ -1,4 +1,4 @@
-# arXiv:2510.XXXX
+# arXiv:2510.069966
 
 The XML file `jetscape_user_SMASHInitialCondition_movie.xml` can produce 
 hadronic output and hydrodynamic evolution output to create a movie of the
