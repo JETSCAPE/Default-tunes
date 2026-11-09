@@ -97,7 +97,7 @@
 
   <!-- Jet Hadronization Module -->
   <JetHadronization>
-    <name>colorless</name>
+    <name>hybrid</name>
     <take_recoil>1</take_recoil>
     <eCMforHadronization>2510</eCMforHadronization>
     <LinesToRead>
